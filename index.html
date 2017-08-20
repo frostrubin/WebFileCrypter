@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>File Encrypter</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"> 
+
+	<link rel="stylesheet" href="spectre.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js"></script>
+</head>
+<body onload="Page.onPageLoad()">
+<section class="section">
+    <input id='upload-file-input' class="invisible" type='file' multiple onchange="Page.onFileSelect(event)">
+    <div class="container" id="container-steps">
+        <div class="columns">
+            <div class="column col-2"></div>
+            <div class="column col-8">
+              <ul class="step">
+                <li class="step-item active">
+                  <a href="#" class="tooltip" data-tooltip="No Files selected" onclick="Page.onStep(1)">
+                        Select Files
+                  </a>
+                </li>
+                <li class="step-item">
+                  <a href="#" class="tooltip" data-tooltip="No Cipher chosen" onclick="Page.onStep(2)">
+                        Enter Cipher
+                  </a>
+                </li>
+                <li class="step-item">
+                  <a href="#" class="tooltip" data-tooltip="Nothing to do" onclick="Page.onStep(3)">
+                        Encrypt / Decrypt
+                  </a>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container" id="container-cipher">
+        <div class="columns">
+            <!-- Newline -->
+            <div class="column col-4"></div>
+            <div class="column col-4">
+                <input class="form-input centered text-center invisible" 
+                       type="password" id="cipher" onkeypress="Page.onCipherKey(event)" 
+                                                   onkeyup="Page.onCipherKeyUp(event)">
+            </div>
+          </div>
+    </div>
+    <div class="container">
+        <div class="columns" id="error-file-list">
+
+        </div>
+    </div>    
+</section>
+</body>
+</html>
