@@ -215,10 +215,10 @@ class enCrypter extends crypterBase {
 		super();
 		this._setAlgorithm(crypto.getRandomValues(new Uint8Array(12)));
 
-    	crypto.subtle.digest('SHA-256', stringToArrayBuffer(Page.getCipher()))
+    	crypto.subtle.digest('SHA-512', stringToArrayBuffer(Page.getCipher()))
     	.then(hash => {
 			return crypto.subtle.importKey('raw',    hash, 'AES-GCM',
-    										false,   ['encrypt']);
+    						       false,   ['encrypt']);
     	})
     	.then(key => { 
 			var fileReader = new FileReader();
@@ -247,10 +247,10 @@ class deCrypter extends crypterBase {
 			let {iv, data} = splitIvAndData(arrayBuffer);
 			this._setAlgorithm(iv);
 			this._data = data;
-			crypto.subtle.digest('SHA-256', stringToArrayBuffer(Page.getCipher()))
+			crypto.subtle.digest('SHA-512', stringToArrayBuffer(Page.getCipher()))
 			.then(hash => {
 				return crypto.subtle.importKey('raw',    hash, 'AES-GCM',
-												false,   ['decrypt']);
+							       false,   ['decrypt']);
 			})
 			.then(key => {
 				crypto.subtle.decrypt(this._algorithm, key, this._data)
@@ -302,8 +302,5 @@ function mergeIvAndData(iv, data) {
 function splitIvAndData(data) {
     var iv = data.slice(0, 12);
     var data = data.slice(12);
-    return {
-        iv,
-        data,
-    }
+    return { iv, data, }
 }
