@@ -6,3 +6,6 @@ This is simple Website that can be used to encrypt and decrypt files using the J
 You can reach it at [https://frostrubin.github.io/WebFileCrypter/](https://frostrubin.github.io/WebFileCrypter/).
 
 All Source Files can be found in the `gh-pages` branch.
+
+Inspired by: 
+   - [https://github.com/villa7/FileCrypt](https://github.com/villa7/FileCrypt)
