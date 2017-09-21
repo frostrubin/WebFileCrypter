@@ -215,7 +215,7 @@ class enCrypter extends crypterBase {
 		super();
 		this._setAlgorithm(crypto.getRandomValues(new Uint8Array(12)));
 
-    	crypto.subtle.digest('SHA-512', stringToArrayBuffer(Page.getCipher()))
+    	crypto.subtle.digest('SHA-256', stringToArrayBuffer(Page.getCipher()))
     	.then(hash => {
 			return crypto.subtle.importKey('raw',    hash, 'AES-GCM',
     						       false,   ['encrypt']);
@@ -247,7 +247,7 @@ class deCrypter extends crypterBase {
 			let {iv, data} = splitIvAndData(arrayBuffer);
 			this._setAlgorithm(iv);
 			this._data = data;
-			crypto.subtle.digest('SHA-512', stringToArrayBuffer(Page.getCipher()))
+			crypto.subtle.digest('SHA-256', stringToArrayBuffer(Page.getCipher()))
 			.then(hash => {
 				return crypto.subtle.importKey('raw',    hash, 'AES-GCM',
 							       false,   ['decrypt']);
