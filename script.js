@@ -280,7 +280,7 @@ function stringToArrayBuffer(string) {
     return new TextEncoder('utf-8').encode(string);
 }
 
-function saveFile(content, fileName) {
+async function saveFileAndWait(content, fileName) {
 	var blob = new Blob([content],{type:'application/octet-stream'});
 	var elem = window.document.createElement('a');
 	elem.href = window.URL.createObjectURL(blob);
@@ -289,7 +289,12 @@ function saveFile(content, fileName) {
 	document.body.appendChild(elem);
 	elem.click();        
 	document.body.removeChild(elem);
-	window.URL.revokeObjectURL(url);	
+	window.URL.revokeObjectURL(url);
+	await new Promise(r => setTimeout(r, 2500));
+}
+
+function saveFile(content, fileName) {
+	saveFileAndWait(content, fileName).then(=> {});
 }
 
 function mergeIvAndData(iv, data) {
