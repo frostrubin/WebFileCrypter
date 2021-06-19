@@ -294,7 +294,7 @@ async function saveFileAndWait(content, fileName) {
 }
 
 function saveFile(content, fileName) {
-	saveFileAndWait(content, fileName).then(=> {});
+	saveFileAndWait(content, fileName);
 }
 
 function mergeIvAndData(iv, data) {
